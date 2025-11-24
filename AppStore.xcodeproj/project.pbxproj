@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F1668DC22ED20E8D00AF52EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F1668DC12ED20E8D00AF52EF /* Alamofire */; };
+		F1FA2F0E2ED36893000677BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F1FA2F0D2ED36893000677BA /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F169B3F62ED04AE50021BAEC /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1FA2F0E2ED36893000677BA /* Kingfisher in Frameworks */,
+				F1668DC22ED20E8D00AF52EF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = AppStore;
 			packageProductDependencies = (
+				F1668DC12ED20E8D00AF52EF /* Alamofire */,
+				F1FA2F0D2ED36893000677BA /* Kingfisher */,
 			);
 			productName = AppStore;
 			productReference = F169B3F62ED04AE50021BAEC /* AppStore.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = F169B3ED2ED04AE50021BAEC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F1668DC02ED20E8D00AF52EF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F1FA2F0C2ED36893000677BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F169B3F72ED04AE50021BAEC /* Products */;
 			projectDirPath = "";
@@ -150,7 +163,7 @@
 				INFOPLIST_FILE = AppStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -182,7 +195,7 @@
 				INFOPLIST_FILE = AppStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +358,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F1668DC02ED20E8D00AF52EF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		F1FA2F0C2ED36893000677BA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F1668DC12ED20E8D00AF52EF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1668DC02ED20E8D00AF52EF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F1FA2F0D2ED36893000677BA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1FA2F0C2ED36893000677BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F169B3EE2ED04AE50021BAEC /* Project object */;
 }
