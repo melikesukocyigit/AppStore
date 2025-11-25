@@ -11,6 +11,7 @@ private let reuseHeaderIdentifier = "AppsHeaderCell"
 class AppsViewController: UICollectionViewController {
     //Properties
     var feedArray: [Feed] = []
+    var appsHeaderResult: [AppHeaderModel] = []
     //Lifecycle
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -57,6 +58,11 @@ extension AppsViewController {
             dispatchGroup.leave()
             self.feedArray.append(feed)
         }
+        dispatchGroup.enter()
+        AppsService.fetchHeaderData(urlString: URL_HEADER) { result in
+            dispatchGroup.leave()
+            self.appsHeaderResult = result
+        }
         dispatchGroup.notify(queue: .main) {
             self.collectionView.reloadData()
         }
@@ -73,19 +79,33 @@ extension AppsViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         as! AppCell
         cell.feed = self.feedArray[indexPath.row]
+        cell.delegate = self
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! AppsHeaderView
+        header.appsHeaderResult = self.appsHeaderResult
         return header
     }
 }
 //UICollectionViewDelegateFlowLayout
 extension AppsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 250)
+        return .init(width: view.frame.width - 10, height: 250)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: view.frame.width, height: 250)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 10, bottom: 0, right: 0)
+    }
+}
+
+//AppsCellProtocol
+extension AppsViewController: AppCellProtocol{
+    func goAppInfoViewController(id: String) {
+        let controller = AppsInfoViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+
     }
 }

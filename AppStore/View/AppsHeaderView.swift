@@ -8,12 +8,16 @@
 import UIKit
 class AppsHeaderView: UICollectionReusableView {
     // properties
+    var appsHeaderResult: [AppHeaderModel] = [] {
+        didSet {
+            appsHeaderViewController.appsHeaderResult = appsHeaderResult
+        }
+    }
     private let appsHeaderViewController = AppsHeaderViewController()
     
     // lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
         style()
         layout()
     }
@@ -35,7 +39,7 @@ extension AppsHeaderView {
             appsHeaderViewController.view.topAnchor.constraint(equalTo: topAnchor),
             appsHeaderViewController.view.leadingAnchor.constraint(equalTo: leadingAnchor),
             appsHeaderViewController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-            appsHeaderViewController.view.bottomAnchor.constraint(equalTo: bottomAnchor),
+            appsHeaderViewController.view.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -8),
             
         ])
     }

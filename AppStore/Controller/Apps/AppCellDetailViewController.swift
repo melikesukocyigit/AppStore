@@ -7,8 +7,13 @@
 
 import UIKit
 private let reuseIdentifier = "AppCellDetailCell"
+protocol AppCellDetailViewControllerProtocol: AnyObject {
+    func goAppInfoViewController(id: String)
+    
+}
 class AppCellDetailViewController: UICollectionViewController {
     // properties
+    weak var delegate: AppCellDetailViewControllerProtocol?
     var results: [FeedResult] = [] {
         didSet {
             collectionView.reloadData()
@@ -47,15 +52,23 @@ extension AppCellDetailViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         as! AppCellDetailCell
         cell.result = self.results[indexPath.row]
+        cell.delegate = self
         return cell
     }
 }
  // UICollectionViewDelegateFlowLayout hücre boyutları
 extension AppCellDetailViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 30 , height: (view.frame.height) / 3 - 3 )
+        return .init(width: view.frame.width - 40 , height: (view.frame.height) / 3 - 3 )
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 3
+    }
+
+}
+
+extension AppCellDetailViewController: AppCellDetailCellProtocol{
+    func goAppInfoViewController(id: String) {
+        delegate?.goAppInfoViewController(id: id)
     }
 }
