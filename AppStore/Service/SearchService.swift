@@ -26,4 +26,22 @@ struct SearchService {
             }
         }
     }
+    static func fetchDataID(id: String , completion: @escaping ([Result]) -> Void) {
+        let baseUrl = "https://itunes.apple.com/lookup"
+        let parameters = [ "id":id]
+        AF.request(baseUrl,method: .get,parameters: parameters).responseData {
+            reponseData in
+            if let error = reponseData.error {
+                print(error)
+            }
+            
+            guard let data = reponseData.data else { return }
+            do{
+                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                completion(searchResult.results)
+            }catch let error{
+                print("DECODE ERROR: \(error)")
+            }
+        }
+    }
 }
